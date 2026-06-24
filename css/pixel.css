@@ -1,0 +1,263 @@
+/* 16비트 도트 스프라이트 스타일 */
+.sprite {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* 타이틀 화면 */
+#screen-intro {
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+  align-items: center;
+  justify-content: center;
+}
+
+.title-logo {
+  font-size: 28px;
+  color: var(--gold);
+  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000;
+  letter-spacing: 4px;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.title-sub {
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  margin-bottom: 48px;
+}
+
+/* 캐릭터 생성 */
+#screen-create {
+  background: var(--bg-dark);
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.create-title {
+  font-size: 18px;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 16px;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.class-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.class-card {
+  background: var(--bg-mid);
+  border: 2px solid #333;
+  padding: 12px 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.1s, transform 0.1s;
+}
+.class-card:hover   { border-color: var(--accent); transform: scale(1.02); }
+.class-card.selected { border-color: var(--gold); background: #1e2a4a; }
+
+.class-sprite {
+  width: 48px; height: 48px;
+  margin: 0 auto 6px;
+  image-rendering: pixelated;
+}
+
+.class-name  { font-size: 14px; color: var(--gold); }
+.class-desc  { font-size: 10px; color: var(--text-dim); margin-top: 4px; }
+
+/* 마을 */
+#screen-town {
+  background: var(--bg-dark);
+}
+
+.town-header {
+  background: var(--bg-panel);
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--accent);
+}
+
+.town-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 16px;
+  flex: 1;
+}
+
+.town-building {
+  background: var(--bg-mid);
+  border: 2px solid #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.1s;
+  border-radius: 2px;
+}
+.town-building:hover   { border-color: var(--gold); transform: translateY(-2px); }
+.town-building:active  { transform: translateY(0); }
+
+.building-icon { font-size: 32px; margin-bottom: 8px; }
+.building-name { font-size: 13px; color: var(--gold); }
+
+/* 전투 화면 */
+#screen-battle {
+  background: var(--bg-dark);
+  flex-direction: column;
+}
+
+.battle-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 16px;
+}
+
+.enemy-area, .party-area {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.battle-sprite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.battle-ui {
+  background: var(--bg-panel);
+  border-top: 2px solid var(--accent);
+  padding: 12px;
+}
+
+.action-btns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.skill-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+
+.skill-btn {
+  font-size: 11px;
+  padding: 8px;
+  position: relative;
+}
+
+.skill-cooldown {
+  position: absolute;
+  bottom: 2px; right: 4px;
+  font-size: 9px;
+  color: var(--accent);
+}
+
+/* 던전 */
+#screen-dungeon {
+  background: var(--bg-dark);
+}
+
+.dungeon-header {
+  background: var(--bg-panel);
+  padding: 10px 16px;
+  border-bottom: 2px solid var(--accent);
+}
+
+.stage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.stage-card {
+  background: var(--bg-mid);
+  border: 2px solid #333;
+  padding: 12px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  text-align: center;
+}
+.stage-card:hover         { border-color: var(--gold); }
+.stage-card.locked        { opacity: 0.4; cursor: not-allowed; }
+.stage-card.boss          { border-color: var(--accent); }
+.stage-card.final-boss    { border-color: var(--gold); }
+
+/* 모달 */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-box {
+  background: var(--bg-mid);
+  border: 2px solid var(--accent);
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: pixelPop 0.2s ease;
+}
+
+.modal-title {
+  font-size: 16px;
+  color: var(--gold);
+  margin-bottom: 12px;
+  text-align: center;
+  border-bottom: 1px solid #333;
+  padding-bottom: 8px;
+}
+
+/* 데미지 텍스트 */
+.damage-text {
+  position: absolute;
+  font-size: 16px;
+  font-weight: bold;
+  pointer-events: none;
+  animation: floatUp 1s ease forwards;
+  text-shadow: 2px 2px 0 #000;
+  z-index: 50;
+}
+.damage-text.physical { color: #fff; }
+.damage-text.magic    { color: #a78bfa; }
+.damage-text.heal     { color: var(--exp-color); }
+.damage-text.critical { color: var(--gold); font-size: 20px; }
+
+/* 상태이상 아이콘 */
+.status-icons { display: flex; gap: 2px; flex-wrap: wrap; }
+.status-icon  {
+  width: 16px; height: 16px;
+  font-size: 10px;
+  display: flex; align-items: center; justify-content: center;
+  background: #333; border: 1px solid #555;
+}
+
+/* 스크롤바 */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--bg-panel); }
