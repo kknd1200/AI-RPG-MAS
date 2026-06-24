@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+
+:root {
+  --bg-dark:    #1a1a2e;
+  --bg-mid:     #16213e;
+  --bg-panel:   #0f3460;
+  --accent:     #e94560;
+  --gold:       #f5a623;
+  --text:       #eaeaea;
+  --text-dim:   #888;
+  --hp-color:   #e74c3c;
+  --mp-color:   #3498db;
+  --exp-color:  #2ecc71;
+  --pixel-size: 2px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%; height: 100%;
+  background: var(--bg-dark);
+  color: var(--text);
+  font-family: 'DotGothic16', monospace;
+  overflow: hidden;
+  image-rendering: pixelated;
+}
+
+#app {
+  width: 100%; height: 100%;
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+#gameCanvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  image-rendering: pixelated;
+}
+
+#ui-layer {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+
+.screen {
+  display: none;
+  width: 100%; height: 100%;
+  position: absolute;
+  top: 0; left: 0;
+  pointer-events: all;
+  flex-direction: column;
+}
+
+.screen.active { display: flex; }
+
+/* 버튼 공통 */
+.pixel-btn {
+  font-family: 'DotGothic16', monospace;
+  background: var(--bg-panel);
+  color: var(--text);
+  border: 2px solid var(--accent);
+  padding: 10px 20px;
+  cursor: pointer;
+  image-rendering: pixelated;
+  transition: background 0.1s, transform 0.1s;
+  font-size: 14px;
+}
+.pixel-btn:hover  { background: var(--accent); transform: scale(1.03); }
+.pixel-btn:active { transform: scale(0.97); }
+
+/* HP/MP 바 */
+.stat-bar { width: 100%; height: 10px; background: #333; border: 1px solid #555; }
+.stat-bar-fill { height: 100%; transition: width 0.3s; }
+.hp-bar  { background: var(--hp-color); }
+.mp-bar  { background: var(--mp-color); }
+.exp-bar { background: var(--exp-color); }
+
+/* 패널 */
+.panel {
+  background: var(--bg-mid);
+  border: 2px solid var(--bg-panel);
+  padding: 12px;
+}
+
+/* 애니메이션 */
+@keyframes fadeIn    { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp   { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes pixelPop  { 0% { transform: scale(0); } 60% { transform: scale(1.1); } 100% { transform: scale(1); } }
+@keyframes shake     { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+@keyframes blink     { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes floatUp   { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-40px); opacity: 0; } }
+
+.anim-fadein  { animation: fadeIn  0.4s ease forwards; }
+.anim-slideup { animation: slideUp 0.4s ease forwards; }
+.anim-pop     { animation: pixelPop 0.3s ease forwards; }
+.anim-shake   { animation: shake   0.3s ease; }
+.anim-blink   { animation: blink   1s step-start infinite; }
