@@ -150,4 +150,151 @@ const SKILL_DATA = {
     ]
   },
 
-  // ─── 성직자
+  // ─── 성직자 ───────────────────────────────────────────
+  cleric: {
+    active: [
+      {
+        id: 'cleric_heal', name: '치유', type: 'active', target: 'single_ally',
+        mpCost: 8, cooldown: 1, currentCooldown: 0,
+        damageType: 'heal', multiplier: 2.0,
+        description: '아군 단일 HP 회복 (지력 기반)',
+        unlockLevel: 1
+      },
+      {
+        id: 'cleric_holy_light', name: '신성한 빛', type: 'active', target: 'single',
+        mpCost: 10, cooldown: 2, currentCooldown: 0,
+        damageType: 'magic', multiplier: 1.8,
+        effect: { blind: { chance: 0.4, duration: 2 } },
+        description: '신성 마법 1.8배 + 40% 실명 (2턴)',
+        unlockLevel: 5
+      },
+      {
+        id: 'cleric_mass_heal', name: '대치유', type: 'active', target: 'all_ally',
+        mpCost: 20, cooldown: 5, currentCooldown: 0,
+        damageType: 'heal', multiplier: 1.5,
+        description: '파티 전체 HP 회복',
+        unlockLevel: 10
+      },
+      {
+        id: 'cleric_resurrection', name: '부활', type: 'active', target: 'single_ally',
+        mpCost: 25, cooldown: 8, currentCooldown: 0,
+        damageType: 'revive', reviveHpPercent: 0.5,
+        description: '전투불능 아군을 HP 50%로 부활',
+        unlockLevel: 15
+      }
+    ],
+    passive: [
+      {
+        id: 'cleric_regen', name: '재생', type: 'passive',
+        effect: { hpRegenPerTurn: 3 },
+        description: '매 턴 HP 3 회복',
+        unlockLevel: 3
+      },
+      {
+        id: 'cleric_blessing', name: '축복', type: 'passive',
+        effect: { allStatBonus: 2 },
+        description: '파티 전체 모든 스탯 +2',
+        unlockLevel: 8
+      }
+    ]
+  },
+
+  // ─── 도적 ───────────────────────────────────────────
+  rogue: {
+    active: [
+      {
+        id: 'rogue_backstab', name: '기습', type: 'active', target: 'single',
+        mpCost: 6, cooldown: 2, currentCooldown: 0,
+        damageType: 'physical', multiplier: 2.2,
+        effect: { critGuaranteed: true },
+        description: '반드시 치명타. 물리 데미지 2.2배',
+        unlockLevel: 1
+      },
+      {
+        id: 'rogue_poison', name: '독 바르기', type: 'active', target: 'single',
+        mpCost: 8, cooldown: 3, currentCooldown: 0,
+        damageType: 'physical', multiplier: 1.2,
+        effect: { poison: { damage: 8, duration: 3 } },
+        description: '물리 1.2배 + 3턴 독 (턴당 8 데미지)',
+        unlockLevel: 5
+      },
+      {
+        id: 'rogue_shadowstep', name: '그림자 발걸음', type: 'active', target: 'self',
+        mpCost: 10, cooldown: 4, currentCooldown: 0,
+        damageType: 'buff', effect: { dodge: 0.5, duration: 2 },
+        description: '2턴간 회피율 50% 증가',
+        unlockLevel: 10
+      },
+      {
+        id: 'rogue_fan_knives', name: '단검 난사', type: 'active', target: 'all_enemy',
+        mpCost: 18, cooldown: 5, currentCooldown: 0,
+        damageType: 'physical', multiplier: 1.4,
+        description: '전체 적에게 물리 데미지 1.4배',
+        unlockLevel: 15
+      }
+    ],
+    passive: [
+      {
+        id: 'rogue_swift', name: '신속', type: 'passive',
+        effect: { speedBonus: 5 },
+        description: '속도 +5',
+        unlockLevel: 3
+      },
+      {
+        id: 'rogue_deadly', name: '치명타 강화', type: 'passive',
+        effect: { critDmgBonus: 0.5 },
+        description: '치명타 데미지 +50%',
+        unlockLevel: 8
+      }
+    ]
+  },
+
+  // ─── 권사 ───────────────────────────────────────────
+  monk: {
+    active: [
+      {
+        id: 'monk_combo', name: '연속 공격', type: 'active', target: 'single',
+        mpCost: 7, cooldown: 2, currentCooldown: 0,
+        damageType: 'physical', hits: 3, multiplier: 0.8,
+        description: '3회 연속 공격, 각 0.8배 물리 데미지',
+        unlockLevel: 1
+      },
+      {
+        id: 'monk_inner_ki', name: '내공 방출', type: 'active', target: 'single',
+        mpCost: 12, cooldown: 3, currentCooldown: 0,
+        damageType: 'magic', multiplier: 1.8,
+        effect: { paralyze: { chance: 0.35, duration: 1 } },
+        description: '내공 마법 1.8배 + 35% 마비 (1턴)',
+        unlockLevel: 5
+      },
+      {
+        id: 'monk_iron_body', name: '금강불괴', type: 'active', target: 'self',
+        mpCost: 15, cooldown: 5, currentCooldown: 0,
+        damageType: 'buff', effect: { dmgReduce: 0.5, duration: 3 },
+        description: '3턴간 받는 데미지 50% 감소',
+        unlockLevel: 10
+      },
+      {
+        id: 'monk_dragon_fist', name: '용권', type: 'active', target: 'single',
+        mpCost: 22, cooldown: 6, currentCooldown: 0,
+        damageType: 'physical', multiplier: 4.0,
+        description: '최강의 일격. 물리 데미지 4배',
+        unlockLevel: 15
+      }
+    ],
+    passive: [
+      {
+        id: 'monk_endurance', name: '인내', type: 'passive',
+        effect: { hpBonus: 15, defBonus: 3 },
+        description: '최대 HP +15, 방어력 +3',
+        unlockLevel: 3
+      },
+      {
+        id: 'monk_flow', name: '흐름', type: 'passive',
+        effect: { mpRegenPerTurn: 2 },
+        description: '매 턴 MP 2 회복',
+        unlockLevel: 8
+      }
+    ]
+  }
+};
