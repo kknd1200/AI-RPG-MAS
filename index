@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#1a1a2e" />
+  <title>AI-RPG-MAS</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/pixel.css" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="gameCanvas"></canvas>
+    <div id="ui-layer">
+      <div id="screen-intro"     class="screen active"></div>
+      <div id="screen-create"    class="screen"></div>
+      <div id="screen-town"      class="screen"></div>
+      <div id="screen-dungeon"   class="screen"></div>
+      <div id="screen-battle"    class="screen"></div>
+    </div>
+  </div>
+
+  <!-- 데이터 -->
+  <script src="js/data/classes.js"></script>
+  <script src="js/data/skills.js"></script>
+  <script src="js/data/monsters.js"></script>
+  <script src="js/data/items.js"></script>
+
+  <!-- 코어 -->
+  <script src="js/core/StateManager.js"></script>
+  <script src="js/core/SaveManager.js"></script>
+  <script src="js/core/GameEngine.js"></script>
+
+  <!-- 게임 로직 -->
+  <script src="js/game/Character.js"></script>
+  <script src="js/game/Battle.js"></script>
+  <script src="js/game/Dungeon.js"></script>
+
+  <!-- UI -->
+  <script src="js/ui/Renderer.js"></script>
+  <script src="js/ui/CharacterCreate.js"></script>
+  <script src="js/ui/Town.js"></script>
+
+  <script>
+    window.addEventListener('load', () => {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+      }
+      GameEngine.init();
+    });
+  </script>
+</body>
+</html>
